@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./assets/icon.png" />
+    <title>Main Menu | Railways</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Main Menu -->
+      <div class="menu flex-column flex-center" data-main-menu>
+        <div class="menu__content flex-column flex-center">
+          <img src="./assets/title.png" alt="Railways" class="menu__logo" />
+
+          <div class="menu__player">
+            <input
+              type="text"
+              placeholder="WHO ARE YOU?"
+              class="menu__player-input text-style-base"
+              id="player-name-input"
+              data-player-name-input
+            />
+          </div>
+
+          <div class="menu__options">
+            <div class="difficulty flex-column">
+              <h2 class="difficulty__title text-style-base">
+                SET THE DIFFICULTY!
+              </h2>
+              <div class="difficulty__buttons">
+                <button
+                  class="difficulty__btn difficulty__btn--easy text-style-base btn"
+                  data-easy-btn
+                  data-selected
+                >
+                  5 X 5
+                </button>
+                <button
+                  class="difficulty__btn difficulty__btn--hard text-style-base btn"
+                  data-hard-btn
+                >
+                  7 X 7
+                </button>
+              </div>
+            </div>
+
+            <div class="controls flex-column">
+              <button
+                class="controls__btn controls__btn--rules text-style-base btn"
+                data-rules-btn
+              >
+                RULES
+              </button>
+              <button
+                class="controls__btn controls__btn--start text-style-base btn"
+                data-start-btn
+                disabled
+              >
+                START GAME
+              </button>
+            </div>
+          </div>
+          <button
+            class="controls__btn controls__btn--leaderboard text-style-base btn"
+            data-leaderboard-btn
+          >
+            LEADERBOARD
+          </button>
+        </div>
+      </div>
+
+      <!-- Game -->
+      <div class="game hidden" data-game-wrapper>
+        <div class="game__info flex-column">
+          <img src="./assets/title.png" alt="Railways" class="game__logo" />
+          <div class="game__data flex-row card">
+            <div class="game__data-item flex-column flex-center">
+              <p class="game__data-title text-style-base">ROUTE DESIGNER:</p>
+              <p
+                class="game__data-display text-style-base"
+                data-player-name-display
+              >
+                PLAYER
+              </p>
+            </div>
+            <div class="game__data-divider"></div>
+            <div class="game__data-item flex-column flex-center">
+              <p class="game__data-title text-style-base">ELAPSED TIME:</p>
+              <p
+                class="game__data-display text-style-base"
+                data-elapsed-time-display
+              >
+                00:00
+              </p>
+            </div>
+          </div>
+          <div class="game__controls card flex-column">
+            <h2 class="game__controls-title text-style-base">CONTROLS</h2>
+            <ul class="game__controls-list">
+              <li class="game__controls-item">
+                <span>
+                  <img
+                    src="./assets/controls/mouse_move.png"
+                    alt="Mouse drag"
+                    class="controls__image"
+                  />
+                  or
+                  <span class="grid">
+                    <span></span>
+                    <img
+                      src="./assets/controls/keyboard_arrow_up.png"
+                      alt="Keyboard arrow up"
+                      class="controls__image"
+                    />
+                    <span></span>
+                    <img
+                      src="./assets/controls/keyboard_arrow_left.png"
+                      alt="Keyboard arrow left"
+                      class="controls__image"
+                    />
+                    <img
+                      src="./assets/controls/keyboard_arrow_down.png"
+                      alt="Keyboard arrow down"
+                      class="controls__image"
+                    />
+                    <img
+                      src="./assets/controls/keyboard_arrow_right.png"
+                      alt="Keyboard arrow right"
+                      class="controls__image"
+                    />
+                  </span>
+                  to select tile
+                </span>
+              </li>
+              <li class="game__controls-item flex-column">
+                <span>
+                  <img
+                    src="./assets/controls/mouse_left_outline.png"
+                    alt="Mouse left click"
+                    class="controls__image"
+                  />+<img
+                    src="./assets/controls/mouse_move.png"
+                    alt="Mouse drag"
+                    class="controls__image"
+                  />
+                  or
+                  <img
+                    src="./assets/controls/keyboard_space.png"
+                    alt="Keyboard space key"
+                    class="controls__image keyboard"
+                  />
+                  to place/change rail</span
+                >
+              </li>
+              <li class="game__controls-item flex-column">
+                <span
+                  ><img
+                    src="./assets/controls/mouse_scroll_outline.png"
+                    alt="Mouse middle click"
+                    class="controls__image"
+                  />+<img
+                    src="./assets/controls/mouse_move.png"
+                    alt="Mouse drag"
+                    class="controls__image"
+                  />
+                  or
+                  <img
+                    src="./assets/controls/keyboard_ctrl.png"
+                    alt="Keyboard ctrl key"
+                    class="controls__image keyboard"
+                  />
+                  to delete rail</span
+                >
+              </li>
+              <li class="game__controls-item flex-column">
+                <span
+                  ><img
+                    src="./assets/controls/mouse_right_outline.png"
+                    alt="Mouse right click"
+                    class="controls__image"
+                  />
+                  or
+                  <img
+                    src="./assets/controls/keyboard_shift.png"
+                    alt="Keyboard shift key"
+                    class="controls__image keyboard"
+                  />
+                  to rotate rail</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="game__actions card flex-row">
+            <button
+              class="game__actions-btn btn btn--secondary text-style-base"
+              data-main-menu-btn
+            >
+              Main Menu
+            </button>
+            <button
+              class="game__actions-btn btn btn--danger text-style-base"
+              data-reset-btn
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="board" data-game-board></div>
+      </div>
+
+      <!-- Rules -->
+      <div class="rules flex-center hidden" data-rules>
+        <div class="rules__content flex-column">
+          <h2 class="rules__title text-style-base">RULES</h2>
+          <p class="rules__description text-style-base">
+            In Seeknotland, King No-Name wants to build a circular railway that
+            visits every corner of his realm. The task is entrusted to Trickles,
+            the royal advisor, whose work is made difficult by the kingdom's
+            varied terrain. Let's help Trickles design the map for the kingdom's
+            railway network!
+          </p>
+          <ul class="rules__list">
+            <li class="rules__item">
+              <span class="rules__item-number text-style-base">1.</span>
+              <span class="rules__item-text text-style-base">
+                In an empty cell, the railway can continue in any of the three
+                directions besides the entry direction.
+              </span>
+            </li>
+            <li class="rules__item">
+              <span class="rules__item-number text-style-base">2.</span>
+              <span class="rules__item-text text-style-base">
+                On a bridge tile, the railway can only be built in the straight
+                direction defined by the bridge.
+              </span>
+            </li>
+            <li class="rules__item">
+              <span class="rules__item-number text-style-base">3.</span>
+              <span class="rules__item-text text-style-base">
+                Mountain tiles have rocks that block two adjacent exits, so the
+                train can only continue by turning 90°.
+              </span>
+            </li>
+            <li class="rules__item">
+              <span class="rules__item-number text-style-base">4.</span>
+              <span class="rules__item-text text-style-base">
+                No railway can be built on oasis tiles.
+              </span>
+            </li>
+            <li class="rules__item">
+              <span class="rules__item-number text-style-base">5.</span>
+              <span class="rules__item-text text-style-base">
+                Your goal is to connect all railway tiles together so they from
+                a continuous loop.
+              </span>
+            </li>
+            <li class="rules__item">
+              <span class="rules__item-number text-style-base">6.</span>
+              <span class="rules__item-text text-style-base"> HAVE FUN! </span>
+            </li>
+          </ul>
+          <button
+            class="btn btn--secondary text-style-base"
+            data-rules-close-btn
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="leaderboard flex-center hidden" data-leaderboard>
+        <div class="leaderboard__content flex-column">
+          <h2 class="leaderboard__title text-style-base">LEADERBOARD</h2>
+
+          <div class="leaderboard__filters card flex-row">
+            <button class="filter-btn" data-filter="easy">EASY</button>
+            <button class="filter-btn" data-filter="hard" data-selected>
+              HARD
+            </button>
+          </div>
+
+          <div class="leaderboard__levels card flex-column">
+            <div class="levels__header flex-row">
+              <span class="header-item">Player</span>
+              <span class="header-item">Best Time</span>
+              <span class="header-item">Date</span>
+            </div>
+            <div class="levels__list" data-leaderboard-list></div>
+          </div>
+
+          <button class="close-btn" data-leaderboard-close-btn>Close</button>
+        </div>
+      </div>
+
+      <!-- Level Selection -->
+      <div class="levels flex-center hidden" data-levels>
+        <div class="levels__content flex-column">
+          <h2 class="levels__title text-style-base">SELECT LEVEL</h2>
+          <div class="category__levels"></div>
+          <div class="levels__actions flex-row">
+            <button
+              class="btn btn--primary text-style-base"
+              data-random-level-btn
+            >
+              Random
+            </button>
+
+            <button
+              class="btn btn--secondary text-style-base"
+              data-levels-close-btn
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
