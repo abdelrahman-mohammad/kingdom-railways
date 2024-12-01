@@ -714,8 +714,11 @@ body {
   background-color: rgba(0, 0, 0, 0.05);
 }
 .level-card:hover .level-card__image {
-  border: 3px solid rgba(0, 0, 0, 0.5);
-  transform: scale(1.02);
+  border: 5px transparent;
+  transform: scale(1.08);
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
 }
 .level-card__image {
   width: 100%;
