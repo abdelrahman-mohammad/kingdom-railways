@@ -17,6 +17,7 @@ export class Tile {
   createTileElement() {
     const div = document.createElement("div");
     div.className = "board__tile";
+    div.setAttribute("data-tile", "");
     const img = document.createElement("img");
     img.className = "board__tile-image";
     img.src = this.getImagePath();

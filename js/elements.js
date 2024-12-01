@@ -16,13 +16,15 @@ const leaderboardList = document.querySelector("[data-leaderboard-list]");
 const leaderboardCloseBtn = document.querySelector(
   "[data-leaderboard-close-btn]"
 );
-const difficultyFilters = document.querySelectorAll(".filter-btn");
+const difficultyFilters = document.querySelectorAll(
+  "[data-leaderboard-filter-btn]"
+);
 const leaderboardBtn = document.querySelector("[data-leaderboard-btn]");
 
 // Levels
 const levels = document.querySelector("[data-levels]");
 const levelsCloseBtn = document.querySelector("[data-levels-close-btn]");
-const levelCategory = document.querySelector(".category__levels");
+const levelsGrid = document.querySelector("[data-levels-grid]");
 const randomLevelButton = document.querySelector("[data-random-level-btn]");
 
 // Game
@@ -52,7 +54,7 @@ export default {
   rulesCloseBtn,
   levels,
   levelsCloseBtn,
-  levelCategory,
+  levelsGrid,
   randomLevelButton,
   leaderboard,
   leaderboardList,

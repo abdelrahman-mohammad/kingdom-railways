@@ -20,7 +20,7 @@ const {
   rulesCloseBtn,
   levels,
   levelsCloseBtn,
-  levelCategory,
+  levelsGrid,
   randomLevelButton,
   leaderboard,
   leaderboardList,
@@ -77,9 +77,7 @@ function setupMenuEvents() {
   levelsCloseBtn.addEventListener("click", () =>
     levels.classList.add("hidden")
   );
-  levelCategory.addEventListener("click", (event) =>
-    handleLevelSelection(event)
-  );
+  levelsGrid.addEventListener("click", (event) => handleLevelSelection(event));
   randomLevelButton.addEventListener("click", handleRandomLevelSelection);
 }
 
@@ -99,12 +97,11 @@ function handleRandomLevelSelection() {
 }
 
 function showLevels() {
-  const levelsContainer = document.querySelector(".category__levels");
-  levelsContainer.innerHTML = "";
+  levelsGrid.innerHTML = "";
   const levelsData = LEVEL_NAMES[difficulty];
   levelsData.forEach((levelName, index) => {
     const levelElement = document.createElement("div");
-    levelElement.classList.add("category__level", "flex-column");
+    levelElement.classList.add("level-card", "flex-column");
     levelElement.setAttribute("data-level", index + 1);
 
     const img = document.createElement("img");
@@ -112,11 +109,11 @@ function showLevels() {
       index + 1
     }.png`;
     img.alt = `Level ${index + 1}`;
-    img.classList.add("category__level-image");
+    img.classList.add("level-card__image");
 
     const name = document.createElement("p");
     name.textContent = levelName;
-    name.classList.add("category__level-name", "text-style-base");
+    name.classList.add("level-card__name", "text-style-base");
 
     const bestTime = document.createElement("p");
     const bestTimeValue = player.getBestTime(levelName);
@@ -129,28 +126,29 @@ function showLevels() {
       ? (bestTimeValue % 60).toString().padStart(2, "0")
       : "00";
     bestTime.textContent = `Best Time: ${minutes}:${seconds}`;
-    bestTime.classList.add("category__level-best-time", "text-style-base");
+    bestTime.classList.add("level-card__time", "text-style-base");
 
     const status = document.createElement("p");
     status.textContent = player.hasCompletedLevel(levelName)
       ? "Completed"
       : "Not Complete";
-    status.classList.add("category__level-status", "text-style-base");
-    if (player.hasCompletedLevel(levelName)) status.classList.add("completed");
+    status.classList.add("level-card__status", "text-style-base");
+    if (player.hasCompletedLevel(levelName))
+      status.classList.add("level-card__status--completed");
 
     levelElement.appendChild(img);
     levelElement.appendChild(name);
     levelElement.appendChild(bestTime);
     levelElement.appendChild(status);
 
-    levelsContainer.appendChild(levelElement);
+    levelsGrid.appendChild(levelElement);
   });
 
   levels.classList.remove("hidden");
 }
 
 function handleLevelSelection(event) {
-  const levelElement = event.target.closest(".category__level");
+  const levelElement = event.target.closest("[data-level]");
   if (!levelElement) return;
 
   const level = parseInt(levelElement.dataset.level);
@@ -286,7 +284,7 @@ function handleMouseOver(event) {
 
   const row = parseInt(event.target.dataset.row);
   const col = parseInt(event.target.dataset.col);
-  const targetTile = event.target.closest(".board__tile");
+  const targetTile = event.target.closest("[data-tile]");
   targetTile.setAttribute("data-tile-selected", "");
 
   board.setSelectedTile(row, col);
@@ -472,27 +470,27 @@ function updateLeaderboard() {
       .slice(0, 5);
 
     const levelEntry = document.createElement("div");
-    levelEntry.className = "level-entry flex-column";
+    levelEntry.className = "leaderboard__level flex-column";
 
     const levelHeader = document.createElement("div");
-    levelHeader.className = "level-name text-style-base";
+    levelHeader.className = "leaderboard__level-name text-style-base";
     levelHeader.textContent = levelName;
     levelEntry.appendChild(levelHeader);
 
     levelScores.forEach((score, index) => {
       const scoreEntry = document.createElement("div");
-      scoreEntry.className = "score-entry flex-row";
+      scoreEntry.className = "leaderboard__score flex-row";
 
       const rank = document.createElement("span");
-      rank.className = "rank";
+      rank.className = "leaderboard__rank";
       rank.textContent = `${index + 1}.`;
 
       const player = document.createElement("span");
-      player.className = "player-name";
+      player.className = "leaderboard__player";
       player.textContent = score.playerName;
 
       const time = document.createElement("span");
-      time.className = "time";
+      time.className = "leaderboard__time";
       const minutes = Math.floor(score.time / 60)
         .toString()
         .padStart(2, "0");
@@ -500,7 +498,7 @@ function updateLeaderboard() {
       time.textContent = `${minutes}:${seconds}`;
 
       const date = document.createElement("span");
-      date.className = "date";
+      date.className = "leaderboard__date";
       date.textContent = new Date(score.date).toLocaleDateString();
 
       scoreEntry.appendChild(rank);
@@ -512,7 +510,7 @@ function updateLeaderboard() {
 
     if (levelScores.length === 0) {
       const noScores = document.createElement("div");
-      noScores.className = "no-scores text-style-base";
+      noScores.className = "leaderboard__score--empty text-style-base";
       noScores.textContent = "No scores yet";
       levelEntry.appendChild(noScores);
     }

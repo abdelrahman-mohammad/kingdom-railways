@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="./assets/icon.png" />
     <title>Main Menu | Railways</title>
   </head>
@@ -277,31 +277,44 @@
           <h2 class="leaderboard__title text-style-base">LEADERBOARD</h2>
 
           <div class="leaderboard__filters card flex-row">
-            <button class="filter-btn" data-filter="easy">EASY</button>
-            <button class="filter-btn" data-filter="hard" data-selected>
+            <button
+              class="leaderboard__filter-btn"
+              data-filter="easy"
+              data-leaderboard-filter-btn
+            >
+              EASY
+            </button>
+            <button
+              class="leaderboard__filter-btn"
+              data-filter="hard"
+              data-leaderboard-filter-btn
+              data-selected
+            >
               HARD
             </button>
           </div>
 
-          <div class="leaderboard__levels card flex-column">
-            <div class="levels__header flex-row">
-              <span class="header-item">Player</span>
-              <span class="header-item">Best Time</span>
-              <span class="header-item">Date</span>
+          <div class="leaderboard__scores card flex-column">
+            <div class="leaderboard__header flex-row">
+              <span class="leaderboard__header-item">Player</span>
+              <span class="leaderboard__header-item">Best Time</span>
+              <span class="leaderboard__header-item">Date</span>
             </div>
-            <div class="levels__list" data-leaderboard-list></div>
+            <div class="leaderboard__list" data-leaderboard-list></div>
           </div>
 
-          <button class="close-btn" data-leaderboard-close-btn>Close</button>
+          <button class="leaderboard__close-btn" data-leaderboard-close-btn>
+            Close
+          </button>
         </div>
       </div>
 
       <!-- Level Selection -->
-      <div class="levels flex-center hidden" data-levels>
-        <div class="levels__content flex-column">
-          <h2 class="levels__title text-style-base">SELECT LEVEL</h2>
-          <div class="category__levels"></div>
-          <div class="levels__actions flex-row">
+      <div class="level-select flex-center hidden" data-levels>
+        <div class="level-select__content flex-column">
+          <h2 class="level-select__title text-style-base">SELECT LEVEL</h2>
+          <div class="level-select__grid" data-levels-grid></div>
+          <div class="level-select__actions flex-row">
             <button
               class="btn btn--primary text-style-base"
               data-random-level-btn
